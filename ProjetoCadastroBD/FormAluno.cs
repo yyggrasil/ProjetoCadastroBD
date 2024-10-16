@@ -164,11 +164,6 @@ namespace ProjetoCadastroBD
             }
             return ret;
         }
-        private void materialListView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ButtonSalvar_Click(object sender, EventArgs e)
         {
             if (verificarVazio())
@@ -189,17 +184,14 @@ namespace ProjetoCadastroBD
             dataGridViewAluno.DataSource = dt;
             con.Close();
         }
-
         private void tabPageConsulta_Enter(object sender, EventArgs e)
         {
             CarregaGrid();
         }
-
         private void dataGridViewAluno_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Editar();
         }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
             Editar();
@@ -232,14 +224,12 @@ namespace ProjetoCadastroBD
             }
             CarregaGrid();
         }
-
         private void btnNovo_Click(object sender, EventArgs e)
         {
             LimpaCampos();
             TabControlCadastro.SelectedIndex = 0;
             TextMatricula.Focus();
         }
-
         private void ButtonCancelar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(this, "Atenção: Informações não salvas serão perdidas.\r\n" +

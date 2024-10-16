@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCurso));
             TabControlCadastro = new ReaLTaiizor.Controls.MaterialTabControl();
             tabPageCadastro = new TabPage();
+            TextID = new ReaLTaiizor.Controls.MaterialTextBoxEdit();
             ComboPeriodo = new ReaLTaiizor.Controls.MaterialComboBox();
             ComboNivel = new ReaLTaiizor.Controls.MaterialComboBox();
             ButtonSalvar = new ReaLTaiizor.Controls.MaterialButton();
@@ -41,14 +42,15 @@
             ComboArea = new ReaLTaiizor.Controls.MaterialComboBox();
             TextCodigo = new ReaLTaiizor.Controls.MaterialTextBoxEdit();
             tabPageConsulta = new TabPage();
+            dataGridViewCurso = new DataGridView();
             BtnEditar = new ReaLTaiizor.Controls.MaterialButton();
             BtnNovo = new ReaLTaiizor.Controls.MaterialButton();
             BtnExcluir = new ReaLTaiizor.Controls.MaterialButton();
-            materialListView1 = new ReaLTaiizor.Controls.MaterialListView();
             imageList1 = new ImageList(components);
             TabControlCadastro.SuspendLayout();
             tabPageCadastro.SuspendLayout();
             tabPageConsulta.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCurso).BeginInit();
             SuspendLayout();
             // 
             // TabControlCadastro
@@ -65,10 +67,10 @@
             TabControlCadastro.SelectedIndex = 0;
             TabControlCadastro.Size = new Size(694, 320);
             TabControlCadastro.TabIndex = 0;
-            TabControlCadastro.SelectedIndexChanged += TabControlCadastro_SelectedIndexChanged;
             // 
             // tabPageCadastro
             // 
+            tabPageCadastro.Controls.Add(TextID);
             tabPageCadastro.Controls.Add(ComboPeriodo);
             tabPageCadastro.Controls.Add(ComboNivel);
             tabPageCadastro.Controls.Add(ButtonSalvar);
@@ -85,6 +87,37 @@
             tabPageCadastro.TabIndex = 0;
             tabPageCadastro.Text = "Cadastro";
             tabPageCadastro.UseVisualStyleBackColor = true;
+            // 
+            // TextID
+            // 
+            TextID.AnimateReadOnly = false;
+            TextID.AutoCompleteMode = AutoCompleteMode.None;
+            TextID.AutoCompleteSource = AutoCompleteSource.None;
+            TextID.BackgroundImageLayout = ImageLayout.None;
+            TextID.CharacterCasing = CharacterCasing.Normal;
+            TextID.Depth = 0;
+            TextID.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            TextID.HideSelection = true;
+            TextID.Hint = "ID";
+            TextID.LeadingIcon = null;
+            TextID.Location = new Point(6, 6);
+            TextID.MaxLength = 32767;
+            TextID.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
+            TextID.Name = "TextID";
+            TextID.PasswordChar = '\0';
+            TextID.PrefixSuffixText = null;
+            TextID.ReadOnly = true;
+            TextID.RightToLeft = RightToLeft.No;
+            TextID.SelectedText = "";
+            TextID.SelectionLength = 0;
+            TextID.SelectionStart = 0;
+            TextID.ShortcutsEnabled = true;
+            TextID.Size = new Size(148, 48);
+            TextID.TabIndex = 20;
+            TextID.TabStop = false;
+            TextID.TextAlign = HorizontalAlignment.Left;
+            TextID.TrailingIcon = null;
+            TextID.UseSystemPasswordChar = false;
             // 
             // ComboPeriodo
             // 
@@ -154,6 +187,7 @@
             ButtonSalvar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             ButtonSalvar.UseAccentColor = false;
             ButtonSalvar.UseVisualStyleBackColor = true;
+            ButtonSalvar.Click += ButtonSalvar_Click;
             // 
             // ButtonCancelar
             // 
@@ -175,6 +209,7 @@
             ButtonCancelar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             ButtonCancelar.UseAccentColor = false;
             ButtonCancelar.UseVisualStyleBackColor = true;
+            ButtonCancelar.Click += ButtonCancelar_Click;
             // 
             // TextDuracao
             // 
@@ -274,7 +309,7 @@
             TextCodigo.HideSelection = true;
             TextCodigo.Hint = "Código do curso";
             TextCodigo.LeadingIcon = null;
-            TextCodigo.Location = new Point(5, 5);
+            TextCodigo.Location = new Point(160, 5);
             TextCodigo.MaxLength = 32767;
             TextCodigo.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
             TextCodigo.Name = "TextCodigo";
@@ -286,7 +321,7 @@
             TextCodigo.SelectionLength = 0;
             TextCodigo.SelectionStart = 0;
             TextCodigo.ShortcutsEnabled = true;
-            TextCodigo.Size = new Size(672, 48);
+            TextCodigo.Size = new Size(517, 48);
             TextCodigo.TabIndex = 13;
             TextCodigo.TabStop = false;
             TextCodigo.TextAlign = HorizontalAlignment.Left;
@@ -295,10 +330,10 @@
             // 
             // tabPageConsulta
             // 
+            tabPageConsulta.Controls.Add(dataGridViewCurso);
             tabPageConsulta.Controls.Add(BtnEditar);
             tabPageConsulta.Controls.Add(BtnNovo);
             tabPageConsulta.Controls.Add(BtnExcluir);
-            tabPageConsulta.Controls.Add(materialListView1);
             tabPageConsulta.ImageKey = "search.png";
             tabPageConsulta.Location = new Point(4, 31);
             tabPageConsulta.Name = "tabPageConsulta";
@@ -307,6 +342,17 @@
             tabPageConsulta.TabIndex = 1;
             tabPageConsulta.Text = "Consulta";
             tabPageConsulta.UseVisualStyleBackColor = true;
+            tabPageConsulta.Enter += tabPageConsulta_Enter;
+            // 
+            // dataGridViewCurso
+            // 
+            dataGridViewCurso.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCurso.Dock = DockStyle.Top;
+            dataGridViewCurso.Location = new Point(3, 3);
+            dataGridViewCurso.Name = "dataGridViewCurso";
+            dataGridViewCurso.RowHeadersWidth = 51;
+            dataGridViewCurso.Size = new Size(680, 233);
+            dataGridViewCurso.TabIndex = 4;
             // 
             // BtnEditar
             // 
@@ -327,6 +373,7 @@
             BtnEditar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             BtnEditar.UseAccentColor = false;
             BtnEditar.UseVisualStyleBackColor = true;
+            BtnEditar.Click += BtnEditar_Click;
             // 
             // BtnNovo
             // 
@@ -347,6 +394,7 @@
             BtnNovo.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             BtnNovo.UseAccentColor = false;
             BtnNovo.UseVisualStyleBackColor = true;
+            BtnNovo.Click += BtnNovo_Click;
             // 
             // BtnExcluir
             // 
@@ -367,24 +415,7 @@
             BtnExcluir.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             BtnExcluir.UseAccentColor = false;
             BtnExcluir.UseVisualStyleBackColor = true;
-            // 
-            // materialListView1
-            // 
-            materialListView1.AutoSizeTable = false;
-            materialListView1.BackColor = Color.FromArgb(255, 255, 255);
-            materialListView1.BorderStyle = BorderStyle.None;
-            materialListView1.Depth = 0;
-            materialListView1.FullRowSelect = true;
-            materialListView1.Location = new Point(3, 6);
-            materialListView1.MinimumSize = new Size(200, 100);
-            materialListView1.MouseLocation = new Point(-1, -1);
-            materialListView1.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
-            materialListView1.Name = "materialListView1";
-            materialListView1.OwnerDraw = true;
-            materialListView1.Size = new Size(676, 227);
-            materialListView1.TabIndex = 0;
-            materialListView1.UseCompatibleStateImageBehavior = false;
-            materialListView1.View = View.Details;
+            BtnExcluir.Click += BtnExcluir_Click;
             // 
             // imageList1
             // 
@@ -407,6 +438,7 @@
             tabPageCadastro.ResumeLayout(false);
             tabPageConsulta.ResumeLayout(false);
             tabPageConsulta.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCurso).EndInit();
             ResumeLayout(false);
         }
 
@@ -415,7 +447,6 @@
         private ReaLTaiizor.Controls.MaterialTabControl TabControlCadastro;
         private TabPage tabPageCadastro;
         private TabPage tabPageConsulta;
-        private ReaLTaiizor.Controls.MaterialListView materialListView1;
         private ReaLTaiizor.Controls.MaterialComboBox ComboPeriodo;
         private ReaLTaiizor.Controls.MaterialComboBox ComboNivel;
         private ReaLTaiizor.Controls.MaterialButton ButtonSalvar;
@@ -428,5 +459,7 @@
         private ReaLTaiizor.Controls.MaterialButton BtnNovo;
         private ReaLTaiizor.Controls.MaterialButton BtnExcluir;
         private ImageList imageList1;
+        private ReaLTaiizor.Controls.MaterialTextBoxEdit TextID;
+        private DataGridView dataGridViewCurso;
     }
 }
